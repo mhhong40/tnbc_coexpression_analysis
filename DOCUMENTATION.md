@@ -4,7 +4,7 @@
 [DOCUMENTATION]
 
 ## Handling bulk RNA-seq data from the GDC Repository:
-  - Retrieve TCGA-BRCA clinical data from the NIH GDC Repository
+  - Retrieve TCGA-BRCA clinical data from [the NIH GDC Repository](https://portal.gdc.cancer.gov/repository?filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-BRCA%22%5D%7D%2C%22op%22%3A%22in%22%7D%2C%7B%22content%22%3A%7B%22field%22%3A%22files.cases.primary_site%22%2C%22value%22%3A%5B%22breast%22%5D%7D%2C%22op%22%3A%22in%22%7D%2C%7B%22content%22%3A%7B%22field%22%3A%22files.data_type%22%2C%22value%22%3A%5B%22Gene%20Expression%20Quantification%22%5D%7D%2C%22op%22%3A%22in%22%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.experimental_strategy%22%2C%22value%22%3A%5B%22RNA-Seq%22%5D%7D%7D%5D%7D&searchTableTab=files)
   - Transfer clinical .txt file data into workable Excel spreadsheet
   - Sort by IHC results to select for just TNBC (total: n = 115 patients)
   
