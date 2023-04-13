@@ -20,7 +20,7 @@
   - Construct expression matrix in R (start with first 10 patients in spreadsheet (bolded names))
       - Download STAR Augmented Gene Counts (.tsv) files for each patient. Some manual file preprocessing:
           - Rename each file to match patient ID (for later convenience)
-          - Remove first line (“# gene code: v36…”) of each tsv file so R processes it with the correct number of columns
+          - Remove first line (i.e., "# gene-model: GENCODE v36") of each tsv file so R processes it with the correct number of columns
       - Final result: gene names as rows, patients as columns, unstranded read counts* as matrix values
 
 *[The GDC Docs](https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/) recommends that users normalize raw read count values if a subset of genes is investigated (as in our case)
