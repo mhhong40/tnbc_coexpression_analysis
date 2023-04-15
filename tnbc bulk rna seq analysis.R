@@ -1,17 +1,9 @@
 # install packages
-install.packages("readr")
 install.packages("tidyverse")
-install.packages("tidyr")
-install.packages("dplyr")
-install.packages("data.table")
 install.packages("here")
 
 # load libraries
-library(readr)
 library(tidyverse)
-library(tidyr)
-library(dplyr)
-library(data.table)
 library(here)
 
 # working directory --> tnbc bulk seq data folder for compactness
