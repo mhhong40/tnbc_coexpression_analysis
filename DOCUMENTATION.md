@@ -28,7 +28,7 @@
   - Subset both the annotation file and seq data such that they:
       - only contain protein-coding and miRNA-coding genes whose information are also found in both files
       - contain no duplicate gene names
-  - Construct a new counts matrix and row data from these subset conditions, then coerce them into a new SummarizedExperiment object and preserve as a .rda file
+  - Construct a new counts matrix and row data from these subset conditions, then coerce them (along with the column data from the original SummarizedExperiment) into a new SummarizedExperiment object and preserve as a .rda file
 
 ### Bulk seq data subsetting:
 TO DO: determine number of principal components to be removed, then randomly select 3993 other genes for the corr matrix for a total of 4000 genes (when added to the genes of interest)
