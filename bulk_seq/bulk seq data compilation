@@ -10,11 +10,9 @@ if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 BiocManager::install(bioPkgs)
 
-# load libraries
 library(tidyverse)
 library(here)
 library(readr)
-library(readxl)
 library(TCGAbiolinks)
 library(SummarizedExperiment)
 
@@ -48,11 +46,15 @@ counts <- subset(counts, counts$gene_name %in% ref$gene_name)
 ref <- ref[(ref$gene_name %in% counts$gene_name), ]
 ref <- ref[order(match(ref$gene_name, counts$gene_name)), ]
 
-idList <- colnames(counts)[-1]
-counts0 <- as.matrix(counts[, idList]) # to create a new SE with only the valid genes
+patInfo <- colData(testdata)
+colnames(counts)[-1] <- patInfo$patient
+counts0 <- as.matrix(counts[ , colnames(counts)[-1]])
+rownames(patInfo) <- colnames(counts0)
+rownames(counts0) <- counts$gene_name
 
+# create a new SE with only the valid genes
 fullTnbc <- SummarizedExperiment(assays = SimpleList(exprs = counts0),
                                  rowData = ref,
-                                 colData = idList)
+                                 colData = patInfo)
 
 save(fullTnbc, file = "fullTnbc.rda")
