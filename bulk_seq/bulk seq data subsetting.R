@@ -6,6 +6,8 @@ library(SummarizedExperiment)
 library(sva)
 library(matrixStats)
 
+# assume setwd(here::here("tnbc_bulk_seq_data")) has already been called in one of the other scripts
+
 # expression matrix data 
 load("fullTnbc.rda")
 
