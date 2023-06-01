@@ -22,6 +22,8 @@ clinical <- read_excel("organized_tnbc_clinical_data.xlsx")
 
 set.seed(1234)
 patients <- sample(clinical$BCR_patient_barcode, 80)
+# might have messed up here, need to make sure that the patients are the same for each session
+# if not set seed to null, restart, change the query
 
 query <- GDCquery(project = "TCGA-BRCA",
                   data.category = "Transcriptome Profiling",
