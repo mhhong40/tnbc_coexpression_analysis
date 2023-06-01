@@ -47,7 +47,7 @@ numPC <- num.sv(t(dat), mod, method = "be") # yields 18
 assay(tnbc.Xpcs) <- removePrincipalComponents(t(scale(t(logrpkm.0pcs))), n = numPC) 
 save(tnbc.Xpcs, file = "tnbc.Xpcs.rda", compress = "xz")
 
-assay(tnbc.4pcs) <- WGCNA::removePrincipalComponents(t(scale(t(logrpkm.0pcs))), n = 4) 
+assay(tnbc.4pcs) <- removePrincipalComponents(t(scale(t(logrpkm.0pcs))), n = 4) 
 save(tnbc.4pcs, file = "tnbc.4pcs.rda", compress = "xz")
 
 ###############################################################################
@@ -57,21 +57,19 @@ save(tnbc.4pcs, file = "tnbc.4pcs.rda", compress = "xz")
 # we can expand the sample size if appropriate
 genesInterest <- c("BACH1", "ZEB1", "SNAI1", "LIN28A", "PEBP1", "POU5F1", "TWIST1")
 
-set.seed(1234)
+set.seed(39872)
 others <- which(!rownames(tnbc.0pcs) %in% genesInterest)
 
 # no PCs removed, temporarily using these
 tnbc.4k0 <- tnbc.0pcs[sample(others, size = 3995, replace = FALSE), ]
 tnbc.4k0 <- append(tnbc.4k0, tnbc.0pcs[rownames(tnbc.0pcs) %in% genesInterest, ]) 
-save(tnbc.4k0, file = "tnbc.4k0.rda", compress = xz)
+save(tnbc.4k0, file = "tnbc.4k0.rda", compress = "xz")
 
 # these should have PCs removed:
-## 4 PCs
-tnbc.4k4 <- tnbc.Xpcs[sample(others, size = 3995, replace = FALSE), ]
-tnbc.4k4 <- append(tnbc.4k4, tnbc.0pcs[rownames(tnbc.4k0), ]) 
-save(tnbc.4k4, file = "tnbc.4k4.rda", compress = xz)
-
 ## numPCs (18) as estimated by sva
-tnbc.4kX <- tnbc.Xpcs[sample(others, size = 3995, replace = FALSE), ]
-tnbc.4kX <- append(tnbc.4kX, tnbc.0pcs[rownames(tnbc.4k0), ]) 
-save(tnbc.4kX, file = "tnbc.4kX.rda", compress = xz)
+tnbc.4kX <- tnbc.Xpcs[rownames(tnbc.4k0), ]
+save(tnbc.4kX, file = "tnbc.4kX.rda", compress = "xz")
+
+## 4 PCs
+tnbc.4k4 <- tnbc.4pcs[rownames(tnbc.4k0), ]
+save(tnbc.4k4, file = "tnbc.4k4.rda", compress = "xz")
