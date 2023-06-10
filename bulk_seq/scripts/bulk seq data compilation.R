@@ -4,7 +4,7 @@ install.packages("here")
 install.packages("readr")
 install.packages("readxl")
 
-bioPkgs <- c("TCBAbiolinks", "SummarizedExperiment", "spqn")
+bioPkgs <- c("TCGAbiolinks", "SummarizedExperiment", "spqn")
 
 if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
@@ -13,6 +13,7 @@ BiocManager::install(bioPkgs)
 library(tidyverse)
 library(here)
 library(readr)
+library(readxl)
 library(TCGAbiolinks)
 library(SummarizedExperiment)
 
