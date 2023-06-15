@@ -1,5 +1,5 @@
 # skip if packages already installed
-BiocManager::install("WGCNA", "sva") # * had issues installing GO.db dependency for WGCNA?
+BiocManager::install(c("WGCNA", "sva")) # * had issues installing GO.db dependency for WGCNA?
 
 library(WGCNA)  
 library(SummarizedExperiment)
