@@ -22,7 +22,7 @@
   - Randomly select 80 patients from the clinical for seq data; form/download/prepare a GDC query (via TCGABiolinks functionalities)
       - (Query data is provided in a SummarizedExperiment object; however, it can't directly be used for analysis for reasons below)
  
-  - Here, we closely follow the methodology taken by [Wang, Hicks & Hansen (2020)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009954), with the aim of first determining the presence of the mean-correlation bias in the bulk seq data, and then applying spatial quantile normalization (SpQN) to remove it if necessary
+  - Here, we closely follow the methodology taken by [Wang et al (2020)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009954), with the aim of first determining the presence of the mean-correlation bias in the bulk seq data, and then applying spatial quantile normalization (SpQN) to remove it if necessary
   - The authors choose log2(RPKM) as the basic normalization method for the read counts, so we need gene (exon) length data. However, length data is not contained within any attribute of the SummarizedExperiment object 
   - So, obtain the data from the reference genome annotation file, and read it into R as well
   - Subset both the annotation file and seq data such that they:
@@ -31,7 +31,9 @@
   - Construct a new counts matrix and row data from these subset conditions, then coerce them (along with the column data from the original SummarizedExperiment) into a new SummarizedExperiment object and preserve as a .rda file
 
 ### Bulk seq data subsetting:
-TO DO: determine number of principal components to be removed, then randomly select 3993 other genes for the corr matrix for a total of 4000 genes (when added to the genes of interest)
+  - Determine a recommended number of principal components to be removed using sva package's num.sv() function
+  - Curate datasets with 0, 4, and <number estimated by sva> principal components removed
+  - Randomly select a number of other genes for the correlation matrix for a total of 4000 genes (when added to the genes of interest) to subset from each dataset
 
 ### Bulk seq data corr(elation) analysis:
 TO DO: plot the diagonal submatrices of the corr matrix to determine the presence of the mean-correlation bias, apply SpQN if necessary. then extract correlations of interest and visualize using heatmap. anything else?
