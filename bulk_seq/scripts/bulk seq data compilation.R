@@ -22,7 +22,7 @@ setwd(here::here("tnbc_bulk_rna_seq_data"))
 clinical <- read_excel("organized_tnbc_clinical_data.xlsx")
 
 set.seed(1234)
-patients <- sample(clinical$BCR_patient_barcode, 80)
+patients <- sample(clinical$"BCR patient barcode", 80)
 # might have messed up here, need to make sure that the patients are the same for each session
 # if not set seed to null, restart, change the query
 
