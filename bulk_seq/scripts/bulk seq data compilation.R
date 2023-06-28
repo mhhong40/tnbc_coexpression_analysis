@@ -22,9 +22,7 @@ setwd(here::here("tnbc_bulk_rna_seq_data"))
 clinical <- read_excel("organized_tnbc_clinical_data.xlsx")
 
 set.seed(1234)
-patients <- sample(clinical$"BCR patient barcode", 80)
-# might have messed up here, need to make sure that the patients are the same for each session
-# if not set seed to null, restart, change the query
+patients <- sample(clinical$"BCR patient barcode", 80) 
 
 query <- GDCquery(project = "TCGA-BRCA",
                   data.category = "Transcriptome Profiling",
@@ -59,5 +57,4 @@ rownames(counts0) <- counts$gene_name
 fullTnbc <- SummarizedExperiment(assays = SimpleList(exprs = counts0),
                                  rowData = ref,
                                  colData = patInfo)
-
 save(fullTnbc, file = "fullTnbc.rda")
