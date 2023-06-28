@@ -2,7 +2,7 @@ library(tidyverse)
 library(here)
 library(SummarizedExperiment)
 
-load(here::here("tnbc.4k0.rda"))
+load("tnbc.4k0.rda")
 
 genesInterest <- c("BACH1", "ZEB1", "SNAI1", "LIN28A", "PEBP1", "POU5F1", "TWIST1")
 isExpr <- genesInterest[genesInterest %in% rownames(tnbc.4k0)]
@@ -10,7 +10,7 @@ isExpr <- genesInterest[genesInterest %in% rownames(tnbc.4k0)]
 subsetExpr0 <- assay(tnbc.4k0)[rownames(assay(tnbc.4k0)) %in% isExpr, ]
 subsetExpr0 <- subsetExpr0[order(match(rownames(subsetExpr0), isExpr)), , drop = FALSE]
 
-# Q-Q plot
+# Q-Q plots
 for (i in 1:5) {
   qqnorm(subsetExpr0[i, ], 
          main = base::paste(isExpr[i], "Expression Profile"))
