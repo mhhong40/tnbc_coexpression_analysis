@@ -2,7 +2,7 @@ library(tidyverse)
 library(here)
 library(SummarizedExperiment)
 
-load(here::here("tnbc.4k0 87.rda"))
+load(here::here("tnbc.4k0.rda"))
 
 genesInterest <- c("BACH1", "ZEB1", "SNAI1", "LIN28A", "PEBP1", "POU5F1", "TWIST1")
 isExpr <- genesInterest[genesInterest %in% rownames(tnbc.4k0)]
