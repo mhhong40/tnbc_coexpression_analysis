@@ -4,10 +4,10 @@ library(reshape)
 library(SummarizedExperiment)
 library(spqn)
 
-setwd(here::here("tnbc_bulk_rna_seq_data/data"))
-load("tnbc.4k0 87.rda")
-load("tnbc.4k4 87.rda")
-load("tnbc.4kX 87.rda")
+# setwd(here::here("tnbc_bulk_rna_seq_data"))
+load("tnbc.4k0.rda")
+load("tnbc.4k4.rda")
+load("tnbc.4kX.rda")
 
 cor_mat0 <- cor(t(assay(tnbc.4k0)))  # correlation matrices (Pearson r)
 aveLogrpkm0 <- rowData(tnbc.4k0)$aveLogrpkm
