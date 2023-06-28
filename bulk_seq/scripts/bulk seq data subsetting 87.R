@@ -24,14 +24,15 @@ tnbc.0pcs <- fullTnbc[expressed, ]
 logrpkm.0pcs <- log_rpkm[expressed, ]
 aveLogrpkm <- rowMeans(logrpkm.0pcs)
 
-# mean-centering, then variance stabilization
+# mean-centering, then variance scaling
+# this converts each log2(RPKM) to its z-score according to the 
+# expression profile distribution for the respective gene
 logrpkm.0pcs <- (logrpkm.0pcs - aveLogrpkm) / matrixStats::rowSds(logrpkm.0pcs) 
 
 assays(tnbc.0pcs) <- SimpleList(logrpkm = logrpkm.0pcs)
 rowData(tnbc.0pcs)$aveLogrpkm <- aveLogrpkm
 save(tnbc.0pcs, file = "tnbc.0pcs.rda", compress = "xz")
 
-###############################################################################
 
 # removing principal components (PCs) is recommended to reduce (possible) batch effect
 # estimate the # of surrogate variables using sva package
@@ -50,7 +51,6 @@ save(tnbc.Xpcs, file = "tnbc.Xpcs.rda", compress = "xz")
 assay(tnbc.4pcs) <- removePrincipalComponents(t(scale(t(logrpkm.0pcs))), n = 4) 
 save(tnbc.4pcs, file = "tnbc.4pcs.rda", compress = "xz")
 
-###############################################################################
 
 # besides our genes in the neighborhood of BACH1...
 # randomly select 3995 genes for a total of 4000 (a la spqn authors)
